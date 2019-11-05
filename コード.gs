@@ -32,6 +32,10 @@ function doPost(e) {
   var url = "https://hooks.slack.com/services/" + PropertiesService.getScriptProperties().getProperty('ADDITIONAL_URL');
   UrlFetchApp.fetch(url, options);
   
+  if (status == TRIGGER.shoulderPain) {
+    return;
+  }
+  
   // スプレッドシートに出力
   outputRecord(userName, status, timestamp, workingHours);  
 }
