@@ -1,4 +1,4 @@
-var TRIGGER = { start : "始業", end: "終業" };
+var TRIGGER = { start : "始業", end: "終業", shoulderPain: "肩こり" };
 var DAYOFWEEK = { 0: "日", 1: "月", 2: "火", 3: "水", 4: "木", 5: "金", 6: "土" };
 
 function doPost(e) {
@@ -55,6 +55,13 @@ function setResponseData(userName, status, workingHours) {
   var text = status == TRIGGER.start ? userName + "さん、おはようございます！\n今日も1日頑張りましょう！" : userName + "さん、お疲れ様でした！\nゆっくり休んでね!";
   var title = status == TRIGGER.start ? "Let’s enjoy our work!" : "Good job!";
   var pretext = status == TRIGGER.start ? userName + "さんが仕事を開始しました。" : userName　+ "さんが仕事を終了しました。";
+  
+  // お遊びコード（後で消す）
+  if (status == TRIGGER.shoulderPain) {
+    text = "もみもみもみもみもみもみもみもみもみもみもみもみもみもみもみもみ";
+    title = "Refresh!";
+    pretext = userName + "さん、承りました！"
+  }
 
   var options =
   {
@@ -101,7 +108,13 @@ function checkTrigger(keyword) {
  if (results.length > 0) {
    var rowIndex = results[0].getRowIndex();
    status = trrigerSheet.getRange(rowIndex, 2).getValue();
+ } else {
+   // お遊びコード（後で消す）
+   if (keyword.indexOf("肩") != -1 || keyword.indexOf("かた") != -1) {
+     status = "shoulderPain";
+   }
  }
+  
  return TRIGGER[status] != null ? TRIGGER[status] : null; 
 }
       
