@@ -46,7 +46,7 @@ function getUser(user_name) {
   var textFinder = configSheet.createTextFinder(user_name);
   var results = textFinder.findAll();
   var userName = "";
-  if (results.lenght == 0) {
+  if (results.length == 0) {
     userName = user_name;
   } else {
    var rowIndex = results[0].getRowIndex();

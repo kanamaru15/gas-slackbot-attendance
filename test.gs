@@ -113,3 +113,8 @@ function test7() {
   var url = "https://hooks.slack.com/services/" + PropertiesService.getScriptProperties().getProperty('ADDITIONAL_URL');
   Logger.log(url);
 }
+  
+function test8() {
+  var userName = getUser("testaaaa");
+  Logger.log(userName);
+}
